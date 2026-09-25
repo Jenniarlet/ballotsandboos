@@ -1,0 +1,9 @@
+'use client';
+import { UserRound, ArrowDown, MapPin } from 'lucide-react';
+import { CANDIDATES, type Office, type DistrictContext, type Candidate } from '@/lib/ballot-tour';
+export function CandidateCard({candidate,office}:{candidate:Candidate;office:Office}){
+ return <article className="candidate-card"><div className="candidate-portrait" aria-label="Fictional candidate image placeholder"><UserRound size={38} strokeWidth={1}/><span>DEMO PORTRAIT</span></div><div className="candidate-copy"><span className="mock-label">FICTIONAL CANDIDATE</span><h4>{candidate.name}</h4><p>{office.title}</p>{candidate.party&&<p>{candidate.party}</p>}<details><summary>LEARN MORE <ArrowDown size={14}/></summary><p>This is a fictional profile for the prototype. Candidate biographies, party information, and source links have not been added.</p></details></div></article>
+}
+export function OfficeCard({office,context}:{office:Office;context:DistrictContext}){
+ return <section className="office-card"><div className="office-topline">{office.districtDependent&&office.districtKey?<span className="district-tag"><MapPin size={14}/> YOUR DISTRICT: <b>{context.districts[office.districtKey]}</b></span>:<span className="district-tag">STATEWIDE</span>}{office.term&&<span className="term-tag">TERM: {office.term.toUpperCase()}</span>}</div><h3>{office.title}</h3><p className="office-description">{office.description}</p><ul className="office-examples">{office.examples.map(example=><li key={example}>{example}</li>)}</ul>{office.districtDependent&&<p className="district-explainer">Demo match only. This contest will eventually depend on your {office.districtKey==='cityCouncil'?'council ':''}district and election cycle.</p>}<div className="candidate-grid">{CANDIDATES.filter(candidate=>candidate.officeId===office.id).map(candidate=><CandidateCard key={candidate.id} candidate={candidate} office={office}/>)}</div></section>
+}

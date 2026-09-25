@@ -26,3 +26,6 @@ app/globals.css: visual system and responsive styles.
 
 ## Validation
 TypeScript and production build; manual clickable flow review. Live ballot lookup and candidate information intentionally not implemented.
+
+## Phase 2 extension
+The district reveal now leads into a four-door civic tour with office explainers, fictional candidates and mock questions. See [PHASE2.md](PHASE2.md) for the current implementation, model, and validation. The original Phase 1 scope above is retained as the baseline record.
