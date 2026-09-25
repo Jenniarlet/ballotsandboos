@@ -1,4 +1,4 @@
-# Ballots & Booze — prototype blueprint
+# Ballots & Boos — prototype blueprint
 
 ## Intent
 Help first-time and overwhelmed Hawaii voters understand the structure of a ballot, without recommending candidates or positions. Used at an in-person civic education event.

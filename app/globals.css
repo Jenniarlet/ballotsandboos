@@ -14,3 +14,22 @@
 .door-plaque strong{overflow-wrap:normal;word-break:normal;font-size:clamp(18px,4.4vw,30px)}
 @media(max-width:380px){.door-grid{grid-template-columns:1fr;gap:22px}.door-leaf{min-height:235px}.door-plaque{margin:15px 20px 0;min-height:135px}.door-plaque strong{font-size:30px}.door-plaque>span{font-size:15px}.door-panels{margin:12px 38px 0 20px}.door-handle{right:20px}.door-status{font-size:12px}.door-enter{font-size:14px}}
 .door-status{position:relative;z-index:2}.mock-label{font-size:11px}.candidate-portrait span{font-size:10px}.district-tag,.term-tag{font-size:12px}.question-meta{font-size:12px}
+
+/* Haunted Hawaiʻi State Capitol artwork shared by the welcome poster and the hallway. */
+.capitol-art{display:block;width:100%;height:auto;object-fit:contain;mix-blend-mode:multiply}.welcome-capitol{max-height:245px;margin:18px auto 0}.welcome .ticket{margin-top:12px}.hallway-capitol{max-height:340px;margin:0 auto -2px}.welcome .intro{font-size:22px}@media(max-width:600px){.welcome-capitol{max-height:190px;margin-top:16px}.hallway-capitol{max-height:250px}}
+
+.purpose-tagline{font-size:18px;line-height:1.5;max-width:390px;margin:18px auto 0;color:#40382e;text-align:center}
+
+/* Ink impressions briefly cover each tutorial page change. */
+.handprint-transition{position:fixed;inset:0;z-index:100;overflow:hidden;pointer-events:none;visibility:hidden;background:#171914e8;opacity:0;isolation:isolate}
+.handprint-transition.is-active{visibility:visible;pointer-events:auto;animation:handprint-veil 1s ease both}
+.haunted-hand{position:absolute;object-fit:contain;width:clamp(210px,40vw,460px);height:auto;opacity:0;filter:drop-shadow(0 4px 9px #0008);--hand-angle:-22deg;--hand-flip:1}
+.haunted-hand-0{left:calc(50% - 300px);top:10%;--hand-angle:-22deg}
+.haunted-hand-1{right:calc(50% - 300px);top:30%;--hand-angle:24deg;--hand-flip:-1}
+.haunted-hand-2{left:calc(50% - 150px);bottom:-6%;--hand-angle:-9deg}
+.is-active .haunted-hand{animation:handprint-press .78s ease-out both}
+.is-active .haunted-hand-1{animation-delay:.1s}.is-active .haunted-hand-2{animation-delay:.18s}
+@keyframes handprint-veil{0%{opacity:0}18%,65%{opacity:1}100%{opacity:0}}
+@keyframes handprint-press{0%{opacity:0;transform:rotate(var(--hand-angle)) scale(var(--hand-flip),1) scale(1.2)}20%,70%{opacity:1;transform:rotate(var(--hand-angle)) scale(var(--hand-flip),1) scale(1)}100%{opacity:0;transform:translateY(24px) rotate(var(--hand-angle)) scale(var(--hand-flip),1)}}
+@media(max-width:600px){.haunted-hand{width:72vw}.haunted-hand-0{left:-8%;top:12%}.haunted-hand-1{right:-9%;top:36%}.haunted-hand-2{left:12%;bottom:0}}
+@media(prefers-reduced-motion:reduce){.handprint-transition{display:none!important}}
