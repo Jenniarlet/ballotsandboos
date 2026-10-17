@@ -31,8 +31,8 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--scream);outline-offset:4px}
 
 .viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
-.stage{width:1600px;height:900px;flex:none;position:relative;transform:scale(var(--s,1));transform-origin:center}
-.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:var(--pad);gap:var(--gap);overflow:hidden;font-size:var(--body);line-height:1.35}
+.stage{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:var(--pad);padding-bottom:calc(var(--pad) + var(--u)*60);gap:var(--gap);overflow:hidden;font-size:var(--body);line-height:1.35}
 .slide.on{display:flex}
 .poster{background-color:var(--bone);color:var(--ink);
   background-image:radial-gradient(rgba(60,30,10,.13) 1.2px,transparent 1.6px);background-size:7px 7px}
@@ -71,7 +71,7 @@ a{color:inherit}
 
 /* Title */
 .title{padding:0;flex-direction:row}
-.title .copy{width:52%;padding:var(--pad);display:flex;flex-direction:column;gap:var(--gap);justify-content:center;position:relative;z-index:2}
+.title .copy{width:52%;padding:var(--pad);padding-bottom:calc(var(--pad) + var(--u)*120);display:flex;flex-direction:column;gap:var(--gap);justify-content:center;position:relative;z-index:2}
 .title .art{position:absolute;inset:0 0 0 38%;background:url("img/capitol.jpg") center/cover no-repeat}
 .title .art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,rgba(20,16,13,.55) 30%,rgba(20,16,13,0) 60%)}
 .title .scream{font-size:var(--xl);line-height:.86}
@@ -174,7 +174,7 @@ a{color:inherit}
   body{overflow:auto}
   :root{--u:.46px;--pad:22px}
   .viewport{position:static;display:block}
-  .stage{width:auto;height:auto;transform:none}
+  .stage{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none}
   .slide{position:relative;display:flex;min-height:0;padding:28px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px));gap:16px}
   .title{flex-direction:column;padding:0}
   .title .copy{width:100%;padding:28px 16px 200px}
