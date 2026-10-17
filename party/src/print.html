@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ballots &amp; Boos Print Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Creepster&display=swap">
+<style>
+/* Layout: US Letter sheets, white paper, color only in type, thin bands and outlines to save ink. */
+:root{
+  --ink:#1a1512; --soft:#6b5d50; --rule:#cbbfae;
+  --blood:#c0261d; --gold:#d9a400;
+  --hall:#a8322c; --rulebook:#5f6a2f; --house:#2f6461; --machine:#b05e22; --lost:#5c4a75;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --shriek:"Creepster","Anton",Impact,fantasy;
+  --body-font:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#d9d2c5;color:var(--ink);font:11pt/1.35 var(--body-font)}
+h1,h2,h3,p,ul,ol{margin:0}
+.guide{max-width:8.5in;margin:24px auto;padding:20px 24px;background:#fff;border-left:6px solid var(--blood);font-size:15px;line-height:1.5}
+.guide h1{font-family:var(--display);font-weight:400;font-size:28px;text-transform:uppercase;color:var(--blood)}
+.guide ol{padding-left:1.2em;margin-top:8px}
+.sheets{overflow-x:auto;padding:0 16px 40px}
+.sheet{width:8.5in;height:11in;margin:0 auto 24px;background:#fff;padding:.45in .5in;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.16in;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.pg{position:absolute;bottom:.18in;right:.3in;font-size:7.5pt;color:var(--soft)}
+@page{size:letter;margin:0}
+@media print{
+  body{background:#fff}
+  .guide{display:none}
+  .sheets{padding:0;overflow:visible}
+  .sheet{margin:0;box-shadow:none;break-after:page}
+}
+
+.kicker{font-family:var(--shriek);color:var(--blood);font-size:16pt;line-height:1}
+.eyebrow{font-weight:800;font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.big{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;color:var(--blood)}
+.outline{color:transparent;-webkit-text-stroke:2.5px var(--blood)}
+.h{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:15pt;line-height:1;letter-spacing:.01em}
+.qr{display:block;width:100%;height:auto}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:.2in;border-bottom:2.5px solid var(--ink);padding-bottom:.08in}
+.box{width:.2in;height:.2in;border:1.5px solid var(--ink);display:inline-grid;place-items:center;font-size:7pt;font-weight:800;color:var(--soft)}
+.ynq{display:flex;gap:.07in;flex:none}
+.line{border-bottom:1px solid var(--soft);height:.3in}
+.warn{font-weight:800;color:var(--blood)}
+
+/* Worksheet A */
+.cq{display:flex;flex-direction:column;flex:1}
+.cq li{list-style:none;display:grid;grid-template-columns:.36in 1fr auto;gap:.1in;align-items:center;padding:.045in 0 .045in .1in;border-bottom:1px solid var(--rule);border-left:4px solid var(--c);flex:1}
+.cq li b{font-family:var(--display);font-weight:400;font-size:15pt;color:var(--c);line-height:1}
+.cq li strong{font-weight:800;font-size:9.5pt}
+.cq li span{font-size:8.6pt;line-height:1.25}
+.key{display:flex;flex-wrap:wrap;gap:.06in .18in;font-size:7.5pt;color:var(--soft)}
+.key i{display:inline-block;width:.16in;height:.08in;background:var(--c);margin-right:.04in;vertical-align:middle}
+
+/* Worksheet B */
+.panel{border:1.5px solid var(--ink);padding:.12in .15in;display:flex;flex-direction:column;gap:.07in}
+.amend{display:grid;grid-template-columns:.32in 1fr auto;gap:.1in;align-items:center;font-size:9pt}
+.amend b{font-family:var(--display);font-weight:400;font-size:13pt;color:var(--blood)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:.18in}
+.race{display:grid;grid-template-columns:auto 1fr;gap:.08in;align-items:end;font-size:9pt;font-weight:600}
+.race .line{height:.22in}
+.chk{display:flex;flex-wrap:wrap;gap:.06in .2in;font-size:9.5pt}
+.chk span::before{content:"";display:inline-block;width:.15in;height:.15in;border:1.5px solid var(--ink);margin-right:.06in;vertical-align:-2px}
+.cut{border-top:2px dashed var(--soft);position:relative;margin-top:auto}
+.cut::before{content:"✂  cut here and drop in the raffle bowl at 7:45";position:absolute;top:-.09in;left:.2in;background:#fff;padding:0 .08in;font-size:7.5pt;color:var(--soft)}
+.passport{display:grid;grid-template-columns:1fr 1.05in;gap:.15in;align-items:center}
+.souls{display:grid;grid-template-columns:repeat(6,1fr);gap:.07in}
+.soul{border:1.5px solid var(--c);border-top:5px solid var(--c);height:.62in;padding:.04in;font-size:7pt;font-weight:800;line-height:1.1;text-transform:uppercase;color:var(--c)}
+
+/* Flyers */
+.flyer{justify-content:space-between;text-align:center;align-items:center;padding:.6in}
+.flyer .band{position:absolute;left:0;right:0;top:0;height:.22in;display:flex}
+.flyer .band i{flex:1;background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.08in}
+.chip{border:1.5px solid var(--c);border-left:8px solid var(--c);padding:.04in .12in;font-weight:800;font-size:10pt;color:var(--c)}
+.agenda{width:100%;display:grid;gap:.1in;text-align:left}
+.agenda li{list-style:none;display:grid;grid-template-columns:1.3in 1fr;gap:.2in;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:.08in}
+.agenda time{font-family:var(--display);font-size:24pt;color:var(--blood);line-height:1}
+.agenda b{font-size:15pt}
+.agenda span{display:block;font-size:10.5pt;color:var(--soft)}
+.rules{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:.14in .3in;text-align:left;font-size:11.5pt}
+.rules li{list-style:none;padding-left:.3in;position:relative}
+.rules li::before{content:"✕";position:absolute;left:0;color:var(--blood);font-weight:800}
+.dates{width:100%;display:grid;gap:.16in;text-align:left}
+.dates li{list-style:none;display:grid;grid-template-columns:2.1in 1fr;gap:.2in;align-items:baseline}
+.dates time{font-family:var(--display);font-size:28pt;line-height:1;text-transform:uppercase}
+.dates .final time{color:var(--blood)}
+.dates b{font-size:13pt;display:block}
+.dates span{font-size:10.5pt;color:var(--soft)}
+.qrwall{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:.25in .3in}
+.qrwall figure{margin:0;display:flex;flex-direction:column;gap:.06in;align-items:center}
+.qrwall figure .qr{width:1.75in}
+.qrwall figcaption b{display:block;font-size:10.5pt}
+.qrwall figcaption{font-size:8.5pt;color:var(--soft);line-height:1.25}
+
+/* Station signs: two half-letter signs per sheet */
+.halves{padding:0;gap:0}
+.sign{height:5.5in;padding:.45in .5in .35in;display:grid;grid-template-columns:1fr 1.75in;gap:.3in;align-items:center;position:relative;border-top:.22in solid var(--c)}
+.sign + .sign{border-top-width:.22in}
+.halves .sign:first-child::after{content:"✂";position:absolute;left:.15in;bottom:-.1in;font-size:10pt;color:var(--soft);z-index:2}
+.halves .sign:first-child{border-bottom:1.5px dashed var(--soft)}
+.sign .name{font-family:var(--display);font-weight:400;font-size:46pt;line-height:.9;text-transform:uppercase;color:var(--c)}
+.sign .type{font-weight:800;font-size:9pt;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.sign .here{font-size:12pt;line-height:1.35;margin-top:.1in}
+.sign .task{margin-top:.14in;border:2px dashed var(--c);padding:.1in .14in;font-size:11.5pt}
+.sign .task b{color:var(--c)}
+.sign .q{display:flex;flex-direction:column;align-items:center;gap:.05in;font-family:var(--display);font-size:11pt;text-transform:uppercase;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<section class="guide">
+  <h1>Print pack</h1>
+  <p>Light on ink: white paper with color only in headlines, thin bands and outlines. Turn on “Background graphics” in the print dialog so the color bands print.</p>
+  <ol>
+    <li><b>Pages 1–2 · Worksheet:</b> double-sided, flip on long edge. About 20 copies.</li>
+    <li><b>Pages 3–6 · Stand flyers:</b> one copy each, single-sided. Pages 3 + 4 back to back in stand A (entry), pages 5 + 6 in stand B (Lost Souls Desk).</li>
+    <li><b>Pages 7–9 · Station signs:</b> single-sided, cut in half on the dashed line.</li>
+  </ol>
+</section>
+
+<div class="sheets">
+
+<!-- 1 · Worksheet side A -->
+<section class="sheet">
+  <div class="head">
+    <div><p class="kicker">Ballots &amp; Boos</p><h1 class="big" style="font-size:30pt">My charter cheat sheet<span style="color:var(--ink)">*</span></h1></div>
+    <p class="eyebrow" style="text-align:right">Honolulu Charter Questions 1–20<br>Same for every Oʻahu voter</p>
+  </div>
+  <div style="display:flex;justify-content:space-between;gap:.2in;align-items:center">
+    <p style="font-size:9pt">Circle <b>Y</b>es, <b>N</b>o or <b>?</b> (still researching). It's a private note to take home, not your ballot.</p>
+    <div class="key">
+      <span style="--c:var(--rulebook)"><i></i>Rulebook</span>
+      <span style="--c:var(--house)"><i></i>House &amp; Land</span>
+      <span style="--c:var(--machine)"><i></i>City Machine</span>
+    </div>
+  </div>
+  <ol class="cq">
+    <li style="--c:var(--house)"><b>1</b><span><strong>Food Security Fund.</strong> 0.5% of property tax revenue goes to grants for local food producers, with no rate increase.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>2</b><span><strong>New preamble.</strong> New opening statement on ʻāina, kūpuna and accountable government. Legal powers stay the same.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>3</b><span><strong>Office of ʻŌiwi Resources.</strong> A cultural stewardship office in the Mayor's office, plus a Cultural Advisory Council.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>4</b><span><strong>LGBTQIA+ Commission.</strong> A 9-member commission advising the Mayor, Council and city agencies.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--rulebook)"><b>5</b><span><strong>Ranked-choice voting.</strong> Rank up to 5 for Mayor, Council, Prosecutor. 2032 at the earliest, only if the Legislature approves.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--rulebook)"><b>6</b><span><strong>HPD &amp; immigration.</strong> Protect rights regardless of status. Help federal enforcement only when law or a court order requires.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>7</b><span><strong>Housing as city policy.</strong> Increasing and preserving housing becomes stated policy and a compelling government interest.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>8</b><span><strong>Affordable Housing Fund.</strong> Repayments and interest flow back in. Mixed-use and mixed-income projects qualify.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>9</b><span><strong>Property hearings.</strong> Drops the separate public hearing for city real estate deals. Still on Council agendas.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>10</b><span><strong>10-year housing plan.</strong> Required starting 2030, updated at least every 5 years.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>11</b><span><strong>Grants to nonprofits.</strong> Clean Water and Climate Resiliency funds can give grants to nonprofits.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>12</b><span><strong>Outside funding.</strong> City special funds can accept federal, state and philanthropic money.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>13</b><span><strong>Historic preservation.</strong> The Clean Water &amp; Natural Lands Fund can also pay for historic preservation, and is renamed.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--house)"><b>14</b><span><strong>Land upkeep cap.</strong> Upkeep for fund-bought land rises from 5% to 10% of last year's deposits (about $440k to $880k).</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>15</b><span><strong>Office of Data &amp; Innovation.</strong> A city office for data, privacy and responsible AI use, written into the Charter.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>16</b><span><strong>Green card holders on boards.</strong> Permanent residents living in Honolulu can serve on most city boards.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>17</b><span><strong>Quorum rules.</strong> Vacant and non-voting seats don't count toward quorum. Neighborhood Boards unaffected.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>18</b><span><strong>HR First Deputy.</strong> Becomes an appointed position outside civil service, starting 2027.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--machine)"><b>19</b><span><strong>Charter Commission support.</strong> The City Clerk staffs the Charter Commission, which meets every 10 years.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+    <li style="--c:var(--rulebook)"><b>20</b><span><strong>Ban after impeachment.</strong> An impeached Mayor, Councilmember or Prosecutor can't hold city office for 2 years.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></li>
+  </ol>
+  <p style="font-size:8pt;color:var(--soft)"><b style="color:var(--ink)">*</b> One-line summaries can be a little biased. Always review the exact ballot wording: honolulucitycouncil.org/oahuvotes</p>
+  <span class="pg">1</span>
+</section>
+
+<!-- 2 · Worksheet side B -->
+<section class="sheet">
+  <div class="head">
+    <div><p class="kicker">Ballots &amp; Boos</p><h1 class="big" style="font-size:30pt">My ballot game plan</h1></div>
+    <p class="eyebrow" style="text-align:right">Oʻahu · General Election<br>Tue Nov 3, 2026</p>
+  </div>
+
+  <div class="panel">
+    <h2 class="h">State Constitutional Amendments* <span class="warn" style="font-family:var(--body-font);font-size:8.5pt;text-transform:none">· a blank counts as No</span></h2>
+    <div class="amend"><b>S1</b><span><strong>More time to confirm judges.</strong> Senate gets 60 days instead of 30 for judges appointed Apr 1–Dec 31.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></div>
+    <div class="amend"><b>S2</b><span><strong>RISE infrastructure bonds.</strong> Counties borrow for sewer, water, drainage in set districts, repaid by future property-tax growth.</span><span class="ynq"><i class="box">Y</i><i class="box">N</i><i class="box">?</i></span></div>
+  </div>
+
+  <div class="two">
+    <div class="panel">
+      <h2 class="h">Everyone on Oʻahu</h2>
+      <div class="race"><span>Governor &amp; Lt. Gov</span><div class="line"></div></div>
+      <div class="race"><span>OHA At-Large</span><div class="line"></div></div>
+      <div class="race"><span style="color:var(--soft);font-weight:400;font-size:8pt">vote for the number shown</span><div class="line"></div></div>
+      <div class="race"><span>OHA Oʻahu seat</span><div class="line"></div></div>
+    </div>
+    <div class="panel">
+      <h2 class="h">Depends on my address</h2>
+      <div class="race"><span>U.S. House · CD ___</span><div class="line"></div></div>
+      <div class="race"><span>State Senate · D ___</span><div class="line"></div></div>
+      <div class="race"><span>State House · D ___</span><div class="line"></div></div>
+      <div class="race"><span>City Council · D ___</span><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="panel">
+      <h2 class="h">Still researching</h2>
+      <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+    </div>
+    <div class="panel">
+      <h2 class="h">My return plan</h2>
+      <div class="race"><span>The day I'll turn it in</span><div class="line"></div></div>
+      <div class="chk" style="flex-direction:column"><span>Drop box</span><span>Mail it by Oct 27</span><span>Voter service center (opens Oct 20)</span><span><b>I signed the envelope</b></span></div>
+      <p class="warn" style="font-size:8.5pt">Must ARRIVE by 7:00 pm, Tue Nov 3. Postmarks don't count.</p>
+    </div>
+  </div>
+
+  <p style="font-size:8pt;color:var(--soft)"><b style="color:var(--ink)">*</b> One-line summaries can be a little biased. Always review the exact ballot wording: elections.hawaii.gov</p>
+  <div class="cut"></div>
+  <div class="passport">
+    <div style="display:flex;flex-direction:column;gap:.08in">
+      <div style="display:flex;align-items:baseline;gap:.15in"><h2 class="big" style="font-size:22pt">Collect souls</h2><span class="eyebrow">Raffle ticket · 1 soul = 1 entry</span></div>
+      <div class="race"><span>Name</span><div class="line"></div></div>
+      <div class="souls">
+        <div class="soul" style="--c:var(--hall)">Candidate Hall</div>
+        <div class="soul" style="--c:var(--rulebook)">The Rulebook</div>
+        <div class="soul" style="--c:var(--house)">House &amp; Land</div>
+        <div class="soul" style="--c:var(--machine)">City Machine</div>
+        <div class="soul" style="--c:var(--lost)">Lost Souls Desk</div>
+        <div class="soul" style="--c:var(--ink)">Ghost Wall bonus</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-family:var(--display);font-size:9pt;text-transform:uppercase"><!--QR:play-->Scan to play</div>
+  </div>
+  <span class="pg">2</span>
+</section>
+
+<!-- 3 · Stand A front -->
+<section class="sheet flyer">
+  <div class="band"><i style="--c:var(--hall)"></i><i style="--c:var(--rulebook)"></i><i style="--c:var(--house)"></i><i style="--c:var(--machine)"></i><i style="--c:var(--lost)"></i></div>
+  <div style="display:flex;flex-direction:column;gap:.1in;align-items:center">
+    <p class="kicker" style="font-size:24pt">It came from the ballot!</p>
+    <h1 class="big outline" style="font-size:96pt">Scan<br>to play</h1>
+  </div>
+  <div style="width:4.4in"><!--QR:play--></div>
+  <div style="display:flex;flex-direction:column;gap:.14in;align-items:center">
+    <p style="font-size:15pt;font-weight:600;max-width:6in"><b>Collect Souls:</b> visit stations, finish small tasks, win the raffle.</p>
+    <div class="chips">
+      <span class="chip" style="--c:var(--hall)">Candidate Hall</span><span class="chip" style="--c:var(--rulebook)">The Rulebook</span><span class="chip" style="--c:var(--house)">House &amp; Land</span><span class="chip" style="--c:var(--machine)">City Machine</span><span class="chip" style="--c:var(--lost)">Lost Souls Desk</span>
+    </div>
+  </div>
+  <span class="pg">3</span>
+</section>
+
+<!-- 4 · Stand A back -->
+<section class="sheet flyer" style="justify-content:flex-start;gap:.35in">
+  <div class="band"><i style="--c:var(--blood)"></i></div>
+  <div><p class="kicker" style="font-size:20pt">Ballots &amp; Boos</p><h1 class="big outline" style="font-size:72pt">Tonight</h1></div>
+  <ol class="agenda" style="padding:0">
+    <li><time>6:30</time><div><b>Kickoff</b><span>What's on the ballot and how tonight works</span></div></li>
+    <li><time>6:45</time><div><b>Round 1</b><span>Pick any station · 20 minutes</span></div></li>
+    <li><time>7:05</time><div><b>Round 2</b><span>Pick another</span></div></li>
+    <li><time>7:25</time><div><b>Round 3</b><span>Last call for souls</span></div></li>
+    <li><time>7:45</time><div><b>Regroup</b><span>Ghost Wall, your plan, raffle drawing</span></div></li>
+    <li><time>8:00</time><div><b>Costume vote</b><span>Ranked choice, on post-its</span></div></li>
+  </ol>
+  <h2 class="h" style="font-size:22pt;color:var(--blood);align-self:flex-start">House rules</h2>
+  <ul class="rules" style="padding:0">
+    <li><b>No one tells anyone how to vote.</b></li>
+    <li><b>Disagree kindly.</b> Understand, don't win.</li>
+    <li><b>“I don't know”</b> is a great answer.</li>
+    <li><b>Your picks are yours.</b> Share only if you want.</li>
+  </ul>
+  <span class="pg">4</span>
+</section>
+
+<!-- 5 · Stand B front -->
+<section class="sheet flyer" style="gap:.3in">
+  <div class="band"><i style="--c:var(--lost)"></i></div>
+  <div><p class="kicker" style="font-size:22pt">Don't let your ballot</p><h1 class="big outline" style="font-size:76pt">become<br>a ghost</h1></div>
+  <ol class="dates" style="padding:0">
+    <li><time>Oct 20</time><div><b>Voter service centers open</b><span>Honolulu Hale &amp; Kapolei Hale. Same-day registration.</span></div></li>
+    <li><time>Oct 27</time><div><b>Mailing it? Send by now</b><span>After this, use a drop box.</span></div></li>
+    <li class="final"><time>Nov 3 · 7pm</time><div><b>Ballot must ARRIVE</b><span>Postmarks don't count.</span></div></li>
+  </ol>
+  <div style="display:flex;gap:.35in;align-items:center;text-align:left">
+    <div style="width:2.1in"><!--QR:ballottrax--></div>
+    <div style="display:flex;flex-direction:column;gap:.08in;max-width:3.4in">
+      <p class="h" style="font-size:20pt">Track your ballot</p>
+      <p style="font-size:11pt">hawaii.ballottrax.net · get a text when it's counted</p>
+      <p class="warn" style="font-size:13pt">✍ Sign the envelope. Unsigned ballots don't count.</p>
+    </div>
+  </div>
+  <span class="pg">5</span>
+</section>
+
+<!-- 6 · Stand B back -->
+<section class="sheet flyer" style="justify-content:flex-start;gap:.4in">
+  <div class="band"><i style="--c:var(--house)"></i></div>
+  <div><p class="kicker" style="font-size:20pt">Ballots &amp; Boos</p><h1 class="big outline" style="font-size:72pt">Research here</h1></div>
+  <div class="qrwall">
+    <figure><!--QR:charter--><figcaption><b>Charter questions</b>Official booklet · Oʻahu Votes</figcaption></figure>
+    <figure><!--QR:conam--><figcaption><b>State amendments</b>Official text · Office of Elections</figcaption></figure>
+    <figure><!--QR:civilbeat--><figcaption><b>Every race</b>Candidate Q&amp;As · Civil Beat</figcaption></figure>
+    <figure><!--QR:hprcharter--><figcaption><b>Charter explainer</b>Hawaiʻi Public Radio</figcaption></figure>
+    <figure><!--QR:hprconam--><figcaption><b>Amendments explainer</b>Hawaiʻi Public Radio</figcaption></figure>
+    <figure><!--QR:oha--><figcaption><b>OHA races</b>Office of Hawaiian Affairs</figcaption></figure>
+  </div>
+  <p style="font-size:11pt;color:var(--soft);margin-top:auto">Read one supporter and one opponent too. Then ask: what changes if Yes wins? If No wins?</p>
+  <span class="pg">6</span>
+</section>
+
+<!-- 7 · Signs: Candidate Hall + The Rulebook -->
+<section class="sheet halves">
+  <div class="sign" style="--c:var(--hall)">
+    <div><p class="type">Station · Research</p><h2 class="name">Candidate Hall</h2>
+      <p class="here">Governor &amp; Lt. Gov, U.S. House, OHA Trustees, and your State Senate, State House and City Council races.</p>
+      <p class="task"><b>Soul task:</b> Find your State House district on your ballot. Pick one race and find one thing each candidate said, from the same source.</p></div>
+    <div class="q"><!--QR:hall-->Links + details</div>
+  </div>
+  <div class="sign" style="--c:var(--rulebook)">
+    <div><p class="type">Station · Discussion</p><h2 class="name">The Rulebook</h2>
+      <p class="here">State amendments S1 (judges) and S2 (RISE bonds). Charter 5 (ranked choice), 6 (HPD &amp; immigration), 20 (impeachment).</p>
+      <p class="task"><b>Soul task:</b> Teach it back. Explain one question to someone in a single sentence, including what a Yes changes.</p></div>
+    <div class="q"><!--QR:rulebook-->Links + details</div>
+  </div>
+  <span class="pg">7</span>
+</section>
+
+<!-- 8 · Signs: House & Land + City Machine -->
+<section class="sheet halves">
+  <div class="sign" style="--c:var(--house)">
+    <div><p class="type">Station · Research + talk</p><h2 class="name">House &amp; Land</h2>
+      <p class="here">Charter 1 (food fund), 7–10 (housing), 11–14 (land and special funds).</p>
+      <p class="task"><b>Soul task:</b> Follow the money. Find one dollar or percent figure in a question and say what it pays for.</p></div>
+    <div class="q"><!--QR:houseland-->Links + details</div>
+  </div>
+  <div class="sign" style="--c:var(--machine)">
+    <div><p class="type">Station · Speed round</p><h2 class="name">City Machine</h2>
+      <p class="here">Charter 2–4 (preamble, ʻŌiwi office, LGBTQIA+ commission) and 15–19 (data office, boards, quorum, HR, clerk).</p>
+      <p class="task"><b>Soul task:</b> As a group, sort all 8 onto post-its: “housekeeping” or “big change.”</p></div>
+    <div class="q"><!--QR:machine-->Links + details</div>
+  </div>
+  <span class="pg">8</span>
+</section>
+
+<!-- 9 · Signs: Lost Souls Desk + Ghost Wall -->
+<section class="sheet halves">
+  <div class="sign" style="--c:var(--lost)">
+    <div><p class="type">Station · Self-serve</p><h2 class="name">Lost Souls Desk</h2>
+      <p class="here">Are you registered? Did your ballot arrive? Where's the nearest drop box?</p>
+      <p class="task"><b>Soul task:</b> Write your return plan on your worksheet: the day, and drop box, mail or voter service center.</p></div>
+    <div class="q"><!--QR:lostsouls-->Track + register</div>
+  </div>
+  <div class="sign" style="--c:var(--ink)">
+    <div><p class="type">Whiteboard · All night</p><h2 class="name">Ghost Wall</h2>
+      <p class="here">Stuck on something? Write the question on a post-it and stick it up. We read them together at 7:45.</p>
+      <p class="task"><b>Bonus soul:</b> Answer someone else's question on a new post-it, and include your source.</p></div>
+    <div class="q"><!--QR:ghostwall-->How to play</div>
+  </div>
+  <span class="pg">9</span>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Collect Souls</title>
+<meta name="description" content="The Ballots & Boos game: stations, tasks and research links for your Oʻahu ballot.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%91%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Creepster&display=swap">
+<style>
+/* Layout: one phone-width column of station "tickets", jump links on top. */
+:root{
+  --night:#14100d; --panel:#1f1813; --line:#3a2e24; --bone:#f1e3c3; --dim:#c9b893;
+  --scream:#f6c21c; --blood:#ff5544;
+  --hall:#c0453f; --rule:#8d9a4a; --house:#4f9a94; --machine:#d07a3a; --lost:#9a83c0; --ghost:#f1e3c3;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --shriek:"Creepster","Anton",Impact,fantasy;
+  --body-font:"Archivo","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--night);color:var(--bone);font:16px/1.5 var(--body-font);
+  background-image:radial-gradient(rgba(246,194,28,.05) 1.2px,transparent 1.6px);background-size:7px 7px}
+h1,h2,h3,p,ul,ol{margin:0}
+a{color:var(--scream);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--scream);outline-offset:3px}
+.wrap{max-width:640px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+.shriek{font-family:var(--shriek);color:var(--blood);font-size:26px;line-height:1}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(58px,17vw,92px);line-height:.88;text-transform:uppercase;color:var(--scream);
+  text-shadow:.03em .03em 0 #c0261d,.06em .06em 0 #c0261d,.09em .09em 0 #000;transform:skew(-5deg);transform-origin:left}
+h2{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;text-transform:uppercase;letter-spacing:.01em}
+h3{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.05;text-transform:uppercase}
+.eyebrow{font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--scream)}
+.lede{font-size:18px;font-weight:600;max-width:34em}
+.muted{color:var(--dim)}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-left:6px solid var(--c);color:var(--bone);text-decoration:none;font-weight:700;font-size:14px;background:var(--panel)}
+.howto{display:grid;gap:12px;counter-reset:s;padding:0}
+.howto li{list-style:none;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.howto li::before{counter-increment:s;content:counter(s);font-family:var(--display);font-size:40px;line-height:.9;color:var(--scream);text-shadow:.04em .04em 0 #c0261d}
+.howto b{display:block}
+.ticket{background:var(--panel);border:1px solid var(--line);border-top:10px solid var(--c);padding:20px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.ticket .tag{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.ticket .task{border:2px dashed var(--c);padding:12px 14px}
+.ticket .task b{color:var(--scream)}
+.ticket ul{padding-left:1.1em;display:grid;gap:4px}
+.ticket:target{box-shadow:0 0 0 3px var(--scream)}
+.qs{display:grid;gap:8px;padding:0}
+.qs li{list-style:none;display:grid;grid-template-columns:2.2em 1fr;gap:8px;font-size:15px}
+.qs li b{font-family:var(--display);font-weight:400;font-size:18px;color:var(--c)}
+.qs li strong{font-weight:800}
+.prompts{font-size:15px;color:var(--dim)}
+.warn{background:var(--scream);color:#14100d;font-weight:800;padding:10px 14px}
+.dates{display:grid;gap:12px;padding:0}
+.dates li{list-style:none;display:grid;grid-template-columns:7.5em 1fr;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.dates time{font-family:var(--display);font-size:20px;color:var(--scream);text-transform:uppercase;line-height:1.1}
+.links{display:grid;gap:8px;padding:0}
+.links li{list-style:none}
+.links a{display:block;padding:12px 14px;background:var(--panel);border:1px solid var(--line);color:var(--bone);text-decoration:none}
+.links a b{color:var(--scream)}
+.links a span{display:block;font-size:14px;color:var(--dim)}
+footer{font-size:13px;color:var(--dim);border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <p class="shriek">Ballots &amp; Boos presents</p>
+  <h1>Collect<br>souls</h1>
+  <p class="lede">Visit stations, finish small tasks and earn raffle tickets. You'll go home knowing what's on your ballot and where to research the rest.</p>
+  <nav class="jump" aria-label="Jump to a station">
+    <a href="#hall" style="--c:var(--hall)">Candidate Hall</a>
+    <a href="#rulebook" style="--c:var(--rule)">The Rulebook</a>
+    <a href="#houseland" style="--c:var(--house)">House &amp; Land</a>
+    <a href="#machine" style="--c:var(--machine)">City Machine</a>
+    <a href="#lostsouls" style="--c:var(--lost)">Lost Souls Desk</a>
+    <a href="#ghostwall" style="--c:var(--ghost)">Ghost Wall</a>
+    <a href="#dates" style="--c:var(--scream)">Key dates</a>
+  </nav>
+</header>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+  <h2>How to play</h2>
+  <ol class="howto">
+    <li><div><b>Pick any station.</b><span class="muted">Three 20-minute rounds: 6:45, 7:05, 7:25. Go where you're curious.</span></div></li>
+    <li><div><b>Do its task.</b><span class="muted">The task is on the station sign and below.</span></div></li>
+    <li><div><b>Check a box on your passport.</b><span class="muted">It's the strip at the bottom of your worksheet. Each box is one soul.</span></div></li>
+    <li><div><b>1 soul = 1 raffle ticket.</b><span class="muted">Write your name on the strip, tear it off and drop it in the bowl at 7:45.</span></div></li>
+  </ol>
+  <p class="muted" style="font-size:14px">No task asks how you're voting. Your worksheet goes home with you.</p>
+</section>
+
+<article class="ticket" id="hall" style="--c:var(--hall)">
+  <span class="tag">Station · Research</span>
+  <h3>Candidate Hall</h3>
+  <p>The people on your ballot. Everyone on Oʻahu votes for <strong>Governor &amp; Lt. Governor</strong> and the <strong>OHA Trustees</strong>. Your address decides your <strong>U.S. House</strong> district (CD1 or CD2), plus <strong>State Senate</strong>, <strong>State House</strong> and <strong>City Council</strong> if your district has a race.</p>
+  <p class="task"><b>Soul task:</b> Find your State House district number on your ballot. Then pick one race and find one thing each candidate said, from the same source.</p>
+  <ul>
+    <li><a href="https://www.civilbeat.org/elections-2026/general/" target="_blank" rel="noopener">Civil Beat virtual ballot</a> <span class="muted">· every race, with candidate Q&amp;As</span></li>
+    <li><a href="https://www.oha.org/vote/" target="_blank" rel="noopener">OHA 2026 elections</a> <span class="muted">· the OHA races</span></li>
+  </ul>
+  <p class="prompts">Ask: What does this office actually control? What has each candidate done before?</p>
+</article>
+
+<article class="ticket" id="rulebook" style="--c:var(--rule)">
+  <span class="tag">Station · Discussion</span>
+  <h3>The Rulebook<sup>*</sup></h3>
+  <p>Questions that change the rules of the game.</p>
+  <ol class="qs">
+    <li><b>S1</b><span><strong>More time to confirm judges.</strong> The State Senate gets 60 days instead of 30 to act on judges appointed April 1 to Dec 31.</span></li>
+    <li><b>S2</b><span><strong>RISE infrastructure bonds.</strong> Counties can borrow for sewer, water and drainage in designated districts, repaid by future property-tax growth there.</span></li>
+    <li><b>5</b><span><strong>Ranked-choice voting.</strong> Rank up to 5 candidates for Mayor, Council and Prosecutor, starting 2032 at the earliest and only if the Legislature approves.</span></li>
+    <li><b>6</b><span><strong>HPD &amp; immigration.</strong> HPD protects constitutional rights regardless of immigration status, and helps federal immigration enforcement only when a law or court order requires it.</span></li>
+    <li><b>20</b><span><strong>Ban after impeachment.</strong> An impeached Mayor, Councilmember or Prosecutor can't hold city office for 2 years.</span></li>
+  </ol>
+  <p class="warn">On S1 and S2, a blank counts as a No.</p>
+  <p class="task"><b>Soul task:</b> Teach it back. Explain one of these to someone in a single sentence, including what a Yes changes.</p>
+  <p class="prompts">Ask: What happens if Yes wins? If No wins? What's the strongest argument from the other side?</p>
+</article>
+
+<article class="ticket" id="houseland" style="--c:var(--house)">
+  <span class="tag">Station · Research + talk</span>
+  <h3>House &amp; Land<sup>*</sup></h3>
+  <p>Housing, food and the city's land funds. Charter questions:</p>
+  <ol class="qs">
+    <li><b>1</b><span><strong>Food Security Fund.</strong> 0.5% of property tax revenue goes to grants for local food producers, with no rate increase.</span></li>
+    <li><b>7</b><span><strong>Housing as city policy.</strong> Increasing and preserving housing becomes stated city policy and a compelling government interest.</span></li>
+    <li><b>8</b><span><strong>Affordable Housing Fund.</strong> Repayments and interest flow back into the fund. Mixed-use and mixed-income projects qualify.</span></li>
+    <li><b>9</b><span><strong>Property hearings.</strong> Drops the separate public hearing for city real estate deals. They still go on Council agendas.</span></li>
+    <li><b>10</b><span><strong>10-year housing plan.</strong> Required starting 2030, updated at least every 5 years.</span></li>
+    <li><b>11</b><span><strong>Grants to nonprofits.</strong> The Clean Water and Climate Resiliency funds can give grants to nonprofits.</span></li>
+    <li><b>12</b><span><strong>Outside funding.</strong> City special funds can accept federal, state and philanthropic money.</span></li>
+    <li><b>13</b><span><strong>Historic preservation.</strong> The Clean Water &amp; Natural Lands Fund can also pay for historic preservation, and is renamed.</span></li>
+    <li><b>14</b><span><strong>Land upkeep cap.</strong> Upkeep for fund-bought land rises from 5% to 10% of last year's deposits (about $440k to $880k).</span></li>
+  </ol>
+  <p class="task"><b>Soul task:</b> Follow the money. Find one dollar or percent figure in a question and say what it pays for.</p>
+  <p class="prompts">Ask: Where does the money come from? Who decides how it's spent?</p>
+</article>
+
+<article class="ticket" id="machine" style="--c:var(--machine)">
+  <span class="tag">Station · Speed round</span>
+  <h3>City Machine<sup>*</sup></h3>
+  <p>Who the city is and how it runs. Charter questions:</p>
+  <ol class="qs">
+    <li><b>2</b><span><strong>New preamble.</strong> Replaces the Charter's opening statement with language on ʻāina, kūpuna and accountable government. Legal powers stay the same.</span></li>
+    <li><b>3</b><span><strong>Office of ʻŌiwi Resources.</strong> A Native Hawaiian cultural stewardship office in the Mayor's office, plus a Cultural Advisory Council.</span></li>
+    <li><b>4</b><span><strong>LGBTQIA+ Commission.</strong> A 9-member commission that advises the Mayor, Council and city agencies.</span></li>
+    <li><b>15</b><span><strong>Office of Data &amp; Innovation.</strong> Puts a city office for data, privacy and responsible AI use in the Charter.</span></li>
+    <li><b>16</b><span><strong>Green card holders on boards.</strong> Permanent residents living in Honolulu can serve on most city boards.</span></li>
+    <li><b>17</b><span><strong>Quorum rules.</strong> Vacant and non-voting seats don't count toward quorum. Neighborhood Boards are unaffected.</span></li>
+    <li><b>18</b><span><strong>HR First Deputy.</strong> Becomes an appointed position outside civil service, starting 2027.</span></li>
+    <li><b>19</b><span><strong>Charter Commission support.</strong> The City Clerk staffs the Charter Commission, which meets every 10 years.</span></li>
+  </ol>
+  <p class="task"><b>Soul task:</b> As a group, sort all 8 onto post-its: “housekeeping” or “big change.” Disagreeing is part of the fun.</p>
+</article>
+
+<article class="ticket" id="lostsouls" style="--c:var(--lost)">
+  <span class="tag">Station · Self-serve</span>
+  <h3>Lost Souls Desk</h3>
+  <p>Make sure your ballot actually gets counted.</p>
+  <ul>
+    <li><a href="https://hawaii.ballottrax.net" target="_blank" rel="noopener">Track your ballot</a> <span class="muted">· see where it is, sign up for texts</span></li>
+    <li><a href="https://olvr.hawaii.gov" target="_blank" rel="noopener">Check or update your registration</a></li>
+    <li><a href="https://www.honolulu.gov/elections/" target="_blank" rel="noopener">Honolulu Elections</a> <span class="muted">· drop boxes, voter service centers, 808-768-9234</span></li>
+  </ul>
+  <p class="task"><b>Soul task:</b> Write your return plan on your worksheet: the day, and whether you'll use a drop box, the mail or a voter service center.</p>
+</article>
+
+<article class="ticket" id="ghostwall" style="--c:var(--ghost)">
+  <span class="tag">Whiteboard · All night</span>
+  <h3>👻 Ghost Wall</h3>
+  <p>Stuck on something? Write the question on a post-it and stick it on the whiteboard. We'll read them together at 7:45.</p>
+  <p class="task"><b>Bonus soul:</b> Answer someone else's question on a new post-it, and include your source.</p>
+</article>
+
+<section id="dates" style="display:flex;flex-direction:column;gap:14px;scroll-margin-top:16px">
+  <h2>Key dates</h2>
+  <ol class="dates">
+    <li><time>Oct 20</time><span>Voter service centers open at Honolulu Hale and Kapolei Hale. Same-day registration and in-person voting.</span></li>
+    <li><time>Oct 27</time><span>Mailing it? Send it by now. After that, use a drop box.</span></li>
+    <li><time>Nov 3 · 7pm</time><span>Your ballot must <strong>arrive</strong>. Postmarks don't count.</span></li>
+  </ol>
+  <p class="warn">Sign the return envelope. Unsigned ballots don't count.</p>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+  <h2>Research links</h2>
+  <ul class="links">
+    <li><a href="https://elections.hawaii.gov/voting/2026-proposed-amendments-to-the-hawaii-state-constitution/" target="_blank" rel="noopener"><b>State amendments: official text</b><span>Hawaiʻi Office of Elections</span></a></li>
+    <li><a href="https://www.honolulucitycouncil.org/oahuvotes" target="_blank" rel="noopener"><b>Charter questions: official booklet</b><span>Oʻahu Votes · Honolulu City Council</span></a></li>
+    <li><a href="https://www.hawaiipublicradio.org/local-news/2026-10-15/voting-explainer-2026-honolulu-charter-amendment-ballot-questions" target="_blank" rel="noopener"><b>Charter explainer</b><span>Hawaiʻi Public Radio</span></a></li>
+    <li><a href="https://www.hawaiipublicradio.org/local-news/2026-10-13/voting-explainer-2026-state-constitutional-amendment-ballot-questions" target="_blank" rel="noopener"><b>Amendments explainer</b><span>Hawaiʻi Public Radio</span></a></li>
+    <li><a href="https://www.civilbeat.org/elections-2026/general/" target="_blank" rel="noopener"><b>Every race + candidate Q&amp;As</b><span>Honolulu Civil Beat</span></a></li>
+    <li><a href="https://www.oha.org/vote/" target="_blank" rel="noopener"><b>OHA races</b><span>Office of Hawaiian Affairs</span></a></li>
+    <li><a href="./" ><b>Kickoff slides</b><span>Missed the start? Flip through them here.</span></a></li>
+  </ul>
+</section>
+
+<footer><b>*</b> Ballots &amp; Boos is nonpartisan, but one-line summaries can still be a little biased. Always review the exact ballot wording (links above) before you vote.</footer>
+</main>
+</body>
+</html>

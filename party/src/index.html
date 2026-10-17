@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ballots &amp; Boos Kickoff</title>
+<meta name="description" content="Kickoff slides for Ballots & Boos, a nonpartisan ballot party for Oʻahu voters.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%91%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Creepster&display=swap">
+<style>
+/* Layout: a 1600×900 B-movie poster stage, scaled to the screen; stacks into a scroll on phones. */
+:root{
+  --night:#14100d; --ink:#1f1813; --bone:#f1e3c3; --bone-2:#e6d3a9;
+  --scream:#f6c21c; --blood:#c0261d; --oxblood:#8c2725;
+  --hall:#8c2725; --rule:#5f6a2f; --house:#2f6461; --machine:#a3561f; --lost:#5c4a75;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --shriek:"Creepster","Anton",Impact,fantasy;
+  --body-font:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --u:1px;
+  --xl:calc(var(--u)*176); --h1:calc(var(--u)*100); --h2:calc(var(--u)*54); --h3:calc(var(--u)*38);
+  --body:calc(var(--u)*30); --small:calc(var(--u)*23); --pad:calc(var(--u)*76); --gap:calc(var(--u)*28);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--night);color:var(--bone);font-family:var(--body-font);overflow:hidden}
+h1,h2,h3,p,ul,ol{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--scream);outline-offset:4px}
+
+.viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+.stage{width:1600px;height:900px;flex:none;position:relative;transform:scale(var(--s,1));transform-origin:center}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:var(--pad);gap:var(--gap);overflow:hidden;font-size:var(--body);line-height:1.35}
+.slide.on{display:flex}
+.poster{background-color:var(--bone);color:var(--ink);
+  background-image:radial-gradient(rgba(60,30,10,.13) 1.2px,transparent 1.6px);background-size:7px 7px}
+.dark{background:var(--night);
+  background-image:radial-gradient(rgba(246,194,28,.06) 1.2px,transparent 1.6px);background-size:7px 7px}
+
+.eyebrow{font-family:var(--body-font);font-weight:800;font-size:var(--small);letter-spacing:.18em;text-transform:uppercase}
+.poster .eyebrow{color:var(--oxblood)}
+.dark .eyebrow{color:var(--scream)}
+.scream{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.01em;text-wrap:balance;
+  font-size:var(--h1);transform:skew(-5deg);transform-origin:left}
+.dark .scream{color:var(--scream);text-shadow:.03em .03em 0 var(--blood),.06em .06em 0 var(--blood),.09em .09em 0 #000}
+.poster .scream{color:var(--blood);text-shadow:.03em .03em 0 var(--ink),.06em .06em 0 var(--ink)}
+.shriek{font-family:var(--shriek);color:var(--blood);font-size:var(--h2);letter-spacing:.03em;line-height:1}
+.dark .shriek{color:#ff4a3a}
+.lede{font-size:var(--h3);line-height:1.25;max-width:30em;font-weight:600}
+.muted{opacity:.78}
+.small{font-size:var(--small)}
+.row{display:flex;gap:var(--gap)}
+.grow{flex:1;min-width:0}
+.grid{display:grid;gap:var(--gap)}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.card{border:calc(var(--u)*4) solid currentColor;padding:calc(var(--u)*26);display:flex;flex-direction:column;gap:calc(var(--u)*10);min-width:0}
+.poster .card{background:rgba(255,250,236,.65);box-shadow:calc(var(--u)*8) calc(var(--u)*8) 0 var(--ink)}
+.dark .card{border-color:var(--bone-2)}
+.card h3{font-family:var(--display);font-weight:400;font-size:var(--h3);text-transform:uppercase;line-height:1}
+.tag{font-family:var(--body-font);font-weight:800;font-size:var(--small);letter-spacing:.12em;text-transform:uppercase}
+.badge{display:inline-block;background:var(--ink);color:var(--scream);font-family:var(--display);font-size:var(--small);letter-spacing:.06em;padding:.15em .5em;text-transform:uppercase}
+.dark .badge{background:var(--scream);color:var(--ink)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:var(--gap)}
+.qr{display:block;width:100%;height:auto;background:#fff}
+.qrbox{background:#fff;color:#000;padding:calc(var(--u)*14);display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*8);flex:none}
+.qrbox span{font-family:var(--display);font-size:var(--small);letter-spacing:.06em;text-transform:uppercase;text-align:center}
+
+/* Title */
+.title{padding:0;flex-direction:row}
+.title .copy{width:52%;padding:var(--pad);display:flex;flex-direction:column;gap:var(--gap);justify-content:center;position:relative;z-index:2}
+.title .art{position:absolute;inset:0 0 0 38%;background:url("img/capitol.jpg") center/cover no-repeat}
+.title .art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,rgba(20,16,13,.55) 30%,rgba(20,16,13,0) 60%)}
+.title .scream{font-size:var(--xl);line-height:.86}
+.burst{position:absolute;right:calc(var(--u)*70);bottom:calc(var(--u)*70);z-index:3;width:calc(var(--u)*300);aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:var(--scream);color:var(--ink);font-family:var(--display);font-size:calc(var(--u)*40);line-height:1;text-transform:uppercase;transform:rotate(10deg);
+  clip-path:polygon(50% 0,61% 13%,77% 6%,79% 22%,95% 24%,88% 39%,100% 50%,88% 61%,95% 76%,79% 78%,77% 94%,61% 87%,50% 100%,39% 87%,23% 94%,21% 78%,5% 76%,12% 61%,0 50%,12% 39%,5% 24%,21% 22%,23% 6%,39% 13%)}
+.burst small{display:block;font-family:var(--body-font);font-weight:800;font-size:calc(var(--u)*19);letter-spacing:.04em;margin-top:.3em}
+
+/* Lists */
+.leave{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);counter-reset:n}
+.leave li{list-style:none;border-top:calc(var(--u)*8) solid var(--blood);padding-top:calc(var(--u)*18);font-size:var(--h3);font-weight:800;line-height:1.15}
+.leave li::before{counter-increment:n;content:counter(n);display:block;font-family:var(--display);font-size:var(--h1);color:var(--blood);line-height:1}
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.rules li{list-style:none;font-size:var(--h3);font-weight:600;line-height:1.2;padding-left:1.4em;position:relative}
+.rules li::before{content:"✕";position:absolute;left:0;color:var(--scream);font-weight:800}
+.rules b{color:var(--scream);font-weight:800}
+
+.timeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:calc(var(--u)*6) solid var(--ink)}
+.timeline div{padding:calc(var(--u)*22) calc(var(--u)*16) 0 0;display:flex;flex-direction:column;gap:calc(var(--u)*8);position:relative}
+.timeline div::before{content:"";position:absolute;top:calc(var(--u)*-17);left:0;width:calc(var(--u)*28);height:calc(var(--u)*28);border-radius:50%;background:var(--blood);border:calc(var(--u)*5) solid var(--ink)}
+.timeline time{font-family:var(--display);font-size:var(--h2);line-height:1;color:var(--blood)}
+.timeline b{font-weight:800;font-size:var(--body);line-height:1.15}
+.timeline span{font-size:var(--small);line-height:1.3}
+.timeline .sharp time{color:var(--ink);background:var(--scream);align-self:flex-start;padding:0 .15em}
+
+/* Ballot split */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:calc(var(--u)*40);flex:1;min-height:0}
+.ballot{background:#fffaf0;color:var(--ink);border:calc(var(--u)*4) solid var(--ink);box-shadow:calc(var(--u)*10) calc(var(--u)*10) 0 var(--ink);padding:calc(var(--u)*28);display:flex;flex-direction:column;gap:calc(var(--u)*14)}
+.ballot h3{font-family:var(--display);font-weight:400;font-size:var(--h3);text-transform:uppercase;border-bottom:calc(var(--u)*4) solid var(--ink);padding-bottom:calc(var(--u)*8)}
+.ballot ul{display:flex;flex-direction:column;gap:calc(var(--u)*10);padding:0}
+.ballot li{list-style:none;display:flex;gap:calc(var(--u)*14);align-items:baseline;font-weight:600}
+.ballot li::before{content:"";flex:none;width:calc(var(--u)*30);height:calc(var(--u)*20);border:calc(var(--u)*3) solid var(--ink);border-radius:50%;transform:translateY(calc(var(--u)*3))}
+.ballot li em{font-style:normal;font-weight:400;opacity:.7}
+.ballot.where li::before{border-style:dashed}
+
+/* Offices */
+.office .term{font-family:var(--display);color:var(--oxblood);font-size:var(--small);letter-spacing:.08em;text-transform:uppercase}
+
+/* Charter groups */
+.cgroup{padding:calc(var(--u)*20)}
+.cgroup h3{font-size:calc(var(--u)*31)}
+.cgroup ol{padding:0;display:flex;flex-direction:column;gap:calc(var(--u)*7)}
+.cgroup li{list-style:none;font-size:var(--small);line-height:1.2;display:flex;gap:calc(var(--u)*10)}
+.cgroup li b{font-family:var(--display);font-weight:400;min-width:1.4em;color:var(--oxblood)}
+.cgroup .st{margin-top:auto;padding-top:calc(var(--u)*10);border-top:calc(var(--u)*3) dotted currentColor}
+
+/* Stations */
+.station{border-width:0;border-top:calc(var(--u)*14) solid var(--c);background:rgba(255,255,255,.04)}
+.dark .station{border-top-color:var(--c)}
+.station h3{color:var(--bone)}
+.station .tag{color:var(--c);filter:brightness(1.7)}
+.station .task{margin-top:auto;padding-top:calc(var(--u)*12);border-top:calc(var(--u)*2) solid rgba(241,227,195,.25);font-size:var(--small)}
+.station .task b{color:var(--scream)}
+.ghost-strip{display:flex;gap:var(--gap);align-items:center;border:calc(var(--u)*4) dashed var(--bone-2);padding:calc(var(--u)*18) calc(var(--u)*26)}
+.ghost-strip h3{font-family:var(--display);font-weight:400;font-size:var(--h3);text-transform:uppercase;color:var(--scream);flex:none}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);counter-reset:s}
+.steps li{list-style:none;display:flex;flex-direction:column;gap:calc(var(--u)*10)}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--display);font-size:calc(var(--u)*120);line-height:.9;color:var(--scream);text-shadow:.04em .04em 0 var(--blood)}
+.steps b{font-size:var(--h3);line-height:1.1;font-weight:800}
+
+/* Dates */
+.dates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
+.date{border-left:calc(var(--u)*8) solid var(--ink);padding-left:calc(var(--u)*20);display:flex;flex-direction:column;gap:calc(var(--u)*6)}
+.date time{font-family:var(--display);font-size:var(--h2);line-height:1;text-transform:uppercase}
+.date.final{border-color:var(--blood)}
+.date.final time{color:var(--blood)}
+.date b{font-weight:800}
+.warn{background:var(--ink);color:var(--scream);font-weight:800;padding:calc(var(--u)*16) calc(var(--u)*24);font-size:var(--h3);line-height:1.15}
+
+/* Lobby */
+.lobby{flex-direction:row;align-items:stretch;gap:calc(var(--u)*56)}
+.lobby .qrbox{width:calc(var(--u)*520);padding:calc(var(--u)*24);justify-content:center}
+.lobby .qrbox span{font-size:var(--h3)}
+.lobby .scream{font-size:calc(var(--u)*120)}
+.clock{display:flex;align-items:baseline;gap:calc(var(--u)*28);flex-wrap:wrap}
+.clock .round{font-family:var(--display);font-size:var(--h2);text-transform:uppercase;color:var(--bone)}
+.clock .time{font-family:var(--display);font-size:calc(var(--u)*150);line-height:.9;color:var(--scream);font-variant-numeric:tabular-nums;text-shadow:.03em .03em 0 var(--blood)}
+.clock.done .time{color:#ff4a3a;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.chips{display:flex;flex-wrap:wrap;gap:calc(var(--u)*12)}
+.chip{border-left:calc(var(--u)*12) solid var(--c);background:rgba(255,255,255,.06);padding:calc(var(--u)*8) calc(var(--u)*16);font-weight:800;font-size:var(--small)}
+.ctrl{display:flex;gap:calc(var(--u)*10)}
+.ctrl button{font:800 var(--small)/1 var(--body-font);background:transparent;color:var(--bone);border:calc(var(--u)*2) solid rgba(241,227,195,.4);padding:calc(var(--u)*10) calc(var(--u)*16);cursor:pointer}
+.ctrl button:hover{border-color:var(--scream);color:var(--scream)}
+.regroup-list{display:none;padding:0;gap:calc(var(--u)*12);flex-direction:column}
+.regroup-list li{list-style:none;font-size:var(--h3);font-weight:800;line-height:1.15}
+.lobby.is-regroup .regroup-list{display:flex}
+.lobby.is-regroup .chips{display:none}
+
+/* Nav */
+.nav{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;z-index:5;opacity:.25;transition:opacity .2s}
+.nav:hover,.nav:focus-within{opacity:1}
+.nav button{font:700 14px/1 var(--body-font);background:var(--ink);color:var(--bone);border:1px solid #5a4a3a;padding:8px 12px;cursor:pointer}
+.nav output{font:700 13px/1 var(--body-font);color:var(--bone);min-width:4em;text-align:center}
+
+/* Phones: stack every slide as a scrolling poster. */
+@media (max-width:760px){
+  body{overflow:auto}
+  :root{--u:.46px;--pad:22px}
+  .viewport{position:static;display:block}
+  .stage{width:auto;height:auto;transform:none}
+  .slide{position:relative;display:flex;min-height:0;padding:28px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px));gap:16px}
+  .title{flex-direction:column;padding:0}
+  .title .copy{width:100%;padding:28px 16px 200px}
+  .title .art{inset:auto 0 0 0;height:240px}
+  .title .art::after{background:linear-gradient(180deg,var(--night) 0%,rgba(20,16,13,0) 60%)}
+  .burst{right:16px;bottom:16px;width:130px}
+  .g2,.g3,.g5,.leave,.rules,.steps,.dates,.split{grid-template-columns:minmax(0,1fr)}
+  .timeline{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}
+  .lobby{flex-direction:column}
+  .lobby .qrbox{width:min(100%,280px)}
+  .row,.foot,.ghost-strip{flex-wrap:wrap}
+  .qrbox{max-width:180px}
+  .nav,.ctrl{display:none}
+}
+@media (prefers-reduced-motion:reduce){.clock.done .time{animation:none}}
+</style>
+</head>
+<body>
+<main class="viewport">
+<div class="stage" id="stage">
+
+<!-- 1 · Title -->
+<section class="slide dark title on" aria-label="Title">
+  <div class="art" role="img" aria-label="Haunted screenprint of the Hawaiʻi State Capitol under a red moon"></div>
+  <div class="copy">
+    <p class="shriek">It came from the ballot!</p>
+    <h1 class="scream">Ballots<br>&amp; Boos</h1>
+    <p class="lede">A nonpartisan night of figuring out your ballot, together.</p>
+    <p class="eyebrow">Oʻahu · General Election · Nov 3, 2026</p>
+  </div>
+  <div class="burst">BYOB!<small>Bring Your<br>Own Ballot</small></div>
+</section>
+
+<!-- 2 · Goal -->
+<section class="slide poster" aria-label="Tonight's goal">
+  <p class="eyebrow">Tonight's goal</p>
+  <h2 class="scream">Get started.<br>Not finished.</h2>
+  <p class="lede">Nobody has to fill in every bubble tonight. You should leave with three things:</p>
+  <ol class="leave" style="margin-top:auto">
+    <li>What's actually on your ballot</li>
+    <li>Where to research what's left</li>
+    <li>The day you'll turn it in</li>
+  </ol>
+</section>
+
+<!-- 3 · House rules -->
+<section class="slide dark" aria-label="House rules">
+  <p class="eyebrow">House rules</p>
+  <h2 class="scream">No one tells anyone<br>how to vote.</h2>
+  <ul class="rules" style="margin-top:auto">
+    <li><b>Disagree kindly.</b> We're here to understand, not to win.</li>
+    <li><b>“I don't know”</b> is a great answer. Post it on the Ghost Wall.</li>
+    <li><b>Your picks are yours.</b> Share them only if you want to.</li>
+    <li><b>Show your source.</b> “I read it on…” beats “I heard…”</li>
+  </ul>
+</section>
+
+<!-- 4 · Run of show -->
+<section class="slide poster" aria-label="Tonight's schedule">
+  <p class="eyebrow">Tonight</p>
+  <h2 class="scream">The night's<br>itinerary</h2>
+  <div class="timeline" style="margin-top:auto">
+    <div class="sharp"><time>6:30</time><b>Kickoff</b><span>You're watching it</span></div>
+    <div><time>6:45</time><b>Round 1</b><span>Pick a station · 20 min</span></div>
+    <div><time>7:05</time><b>Round 2</b><span>Pick another</span></div>
+    <div><time>7:25</time><b>Round 3</b><span>Last call for souls</span></div>
+    <div><time>7:45</time><b>Regroup</b><span>Ghost Wall, your plan, raffle</span></div>
+    <div><time>8:00</time><b>Costume vote</b><span>Ranked choice! Then hang out</span></div>
+  </div>
+</section>
+
+<!-- 5 · What's on the ballot -->
+<section class="slide dark" aria-label="What's on your ballot">
+  <p class="eyebrow">What's on your ballot</p>
+  <h2 class="scream" style="font-size:var(--h2)">It's long. Flip every card over.</h2>
+  <div class="split">
+    <div class="ballot">
+      <h3>Same for everyone on Oʻahu</h3>
+      <ul>
+        <li>Governor &amp; Lt. Governor</li>
+        <li>OHA Trustees <em>· every seat is a statewide vote</em></li>
+        <li>2 State Constitutional Amendments</li>
+        <li>20 Honolulu Charter Questions</li>
+      </ul>
+    </div>
+    <div class="ballot where">
+      <h3>Depends on your address</h3>
+      <ul>
+        <li>U.S. House <em>· CD1 or CD2</em></li>
+        <li>State Senate <em>· if your district is up</em></li>
+        <li>State House <em>· if your race is contested</em></li>
+        <li>City Council <em>· only Districts 4 &amp; 6</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Offices -->
+<section class="slide poster" aria-label="What each office does">
+  <p class="eyebrow">The people part</p>
+  <h2 class="scream" style="font-size:var(--h2)">Who's haunting the ballot</h2>
+  <div class="grid g3" style="flex:1">
+    <div class="card office"><span class="term">4-year term</span><h3>Governor &amp; Lt. Gov</h3><p class="small">Run state government: agencies, the budget, emergencies. Elected as a pair.</p></div>
+    <div class="card office"><span class="term">2-year term</span><h3>U.S. Representative</h3><p class="small">Votes on federal laws in D.C. CD1 is urban Honolulu. CD2 is the rest of Oʻahu and the neighbor islands.</p></div>
+    <div class="card office"><span class="term">Statewide vote</span><h3>OHA Trustees</h3><p class="small">Set policy and budget for the Office of Hawaiian Affairs. Every voter votes in every OHA race.</p></div>
+    <div class="card office"><span class="term">4-year term</span><h3>State Senator</h3><p class="small">Writes state laws on housing, schools and taxes. Confirms judges.</p></div>
+    <div class="card office"><span class="term">2-year term</span><h3>State Representative</h3><p class="small">Writes state laws for a smaller district than a senator.</p></div>
+    <div class="card office"><span class="term">4-year term</span><h3>City Council</h3><p class="small">Honolulu's laws and budget: zoning, roads, parks, property tax rates.</p></div>
+  </div>
+</section>
+
+<!-- 7 · State amendments -->
+<section class="slide dark" aria-label="State constitutional amendments">
+  <p class="eyebrow">State Constitutional Amendments · same statewide</p>
+  <h2 class="scream" style="font-size:var(--h2)">Two Yes/No questions*</h2>
+  <div class="grid g2" style="flex:1">
+    <div class="card"><span class="tag" style="color:var(--scream)">Question 1</span><h3>More time to confirm judges</h3><p>Gives the State Senate <b>60 days instead of 30</b> to approve or reject a judge appointed between April 1 and Dec 31.</p></div>
+    <div class="card"><span class="tag" style="color:var(--scream)">Question 2</span><h3>RISE infrastructure bonds</h3><p>Lets counties borrow for <b>sewer, water and drainage</b> in designated districts, repaid by future property-tax growth there. Not counted against county debt limits.</p></div>
+  </div>
+  <p class="warn">⚠ On these two, leaving it blank counts the same as a NO.</p>
+  <p class="small muted">* One-line summaries can be a little biased. Always review the exact ballot wording.</p>
+</section>
+
+<!-- 8 · Charter -->
+<section class="slide poster" aria-label="Twenty charter questions">
+  <p class="eyebrow">Honolulu Charter Questions · same for all of Oʻahu</p>
+  <h2 class="scream" style="font-size:var(--h2)">20 questions, 5 piles*</h2>
+  <div class="grid g5" style="flex:1">
+    <div class="card cgroup"><h3>People &amp; culture</h3><ol>
+      <li><b>2</b>New Charter preamble</li><li><b>3</b>Office of ʻŌiwi Resources</li><li><b>4</b>LGBTQIA+ Commission</li><li><b>16</b>Green card holders on boards</li></ol>
+      <p class="st tag">City Machine</p></div>
+    <div class="card cgroup"><h3>Elections &amp; rights</h3><ol>
+      <li><b>5</b>Ranked-choice voting</li><li><b>6</b>HPD &amp; immigration</li><li><b>20</b>Ban after impeachment</li></ol>
+      <p class="st tag">The Rulebook</p></div>
+    <div class="card cgroup"><h3>Housing</h3><ol>
+      <li><b>7</b>Housing as city policy</li><li><b>8</b>Affordable Housing Fund</li><li><b>9</b>Property hearings</li><li><b>10</b>10-year housing plan</li></ol>
+      <p class="st tag">House &amp; Land</p></div>
+    <div class="card cgroup"><h3>Food, land &amp; funds</h3><ol>
+      <li><b>1</b>Food Security Fund</li><li><b>11</b>Grants to nonprofits</li><li><b>12</b>Outside funding</li><li><b>13</b>Historic preservation</li><li><b>14</b>Land upkeep cap</li></ol>
+      <p class="st tag">House &amp; Land</p></div>
+    <div class="card cgroup"><h3>How the city runs</h3><ol>
+      <li><b>15</b>Office of Data &amp; Innovation</li><li><b>17</b>Quorum rules</li><li><b>18</b>HR First Deputy</li><li><b>19</b>Charter Commission support</li></ol>
+      <p class="st tag">City Machine</p></div>
+  </div>
+  <p class="small">* One-line summaries can be a little biased. Always review the exact ballot wording.</p>
+</section>
+
+<!-- 9 · Ranked choice -->
+<section class="slide dark" aria-label="About ranked choice">
+  <p class="eyebrow">Heard “ranked choice”?</p>
+  <h2 class="scream">You're not ranking<br>anyone this year.</h2>
+  <div class="row" style="margin-top:auto;align-items:flex-end">
+    <p class="lede grow"><b style="color:var(--scream)">Charter Question 5</b> asks if Honolulu should switch to ranking up to five candidates for Mayor, Council and Prosecutor. It would start in 2032 at the earliest, and only if the Legislature approves.</p>
+    <div class="card" style="max-width:calc(var(--u)*470);flex:none"><h3 style="color:var(--scream)">Try it tonight</h3><p class="small">The 8:00 costume vote is ranked choice. Rank your top 3 on a post-it and watch the count.</p></div>
+  </div>
+</section>
+
+<!-- 10 · Research method -->
+<section class="slide dark" aria-label="How to research one item">
+  <p class="eyebrow">The 10-minute séance</p>
+  <h2 class="scream" style="font-size:var(--h2)">How to research one item</h2>
+  <ol class="steps" style="flex:1;align-content:center">
+    <li><b>Read the exact ballot wording</b><span class="small muted">Not the headline. The words you'll actually vote on.</span></li>
+    <li><b>Read one neutral explainer</b><span class="small muted">Office of Elections, the Charter booklet or HPR.</span></li>
+    <li><b>Hear both sides</b><span class="small muted">One supporter and one opponent. Why does each care?</span></li>
+    <li><b>Ask what changes</b><span class="small muted">If Yes wins, what's different? If No wins? Decide, or add it to your list.</span></li>
+  </ol>
+</section>
+
+<!-- 11 · Stations -->
+<section class="slide dark" aria-label="The stations">
+  <p class="eyebrow">The stations · go wherever you're curious</p>
+  <div class="grid g5" style="flex:1">
+    <div class="card station" style="--c:var(--hall)"><span class="tag">Research</span><h3>Candidate Hall</h3><p class="small">Governor, U.S. House, OHA and your district races.</p><p class="task"><b>Soul:</b> name your State House district and one thing each candidate in a race said.</p></div>
+    <div class="card station" style="--c:var(--rule)"><span class="tag">Discussion</span><h3>The Rulebook</h3><p class="small">State amendments 1–2 and charter questions 5, 6, 20.</p><p class="task"><b>Soul:</b> explain one question to someone in a single sentence.</p></div>
+    <div class="card station" style="--c:var(--house)"><span class="tag">Research + talk</span><h3>House &amp; Land</h3><p class="small">Charter questions 1 and 7–14: housing, food, land funds.</p><p class="task"><b>Soul:</b> find one dollar or % figure in a question.</p></div>
+    <div class="card station" style="--c:var(--machine)"><span class="tag">Speed round</span><h3>City Machine</h3><p class="small">Charter questions 2–4 and 15–19. Mostly quick ones.</p><p class="task"><b>Soul:</b> sort all 8 into “housekeeping” or “big change.”</p></div>
+    <div class="card station" style="--c:var(--lost)"><span class="tag">Self-serve</span><h3>Lost Souls Desk</h3><p class="small">Registered? Ballot arrived? Where's the drop box?</p><p class="task"><b>Soul:</b> write your return plan on your worksheet.</p></div>
+  </div>
+  <div class="ghost-strip"><h3>👻 Ghost Wall</h3><p class="small">Stuck? Write the question on a post-it and stick it on the whiteboard. <b style="color:var(--scream)">Bonus soul:</b> answer someone else's, with a source.</p></div>
+</section>
+
+<!-- 12 · Game -->
+<section class="slide poster" aria-label="How the game works">
+  <p class="eyebrow">The game</p>
+  <h2 class="scream">Collect souls</h2>
+  <div class="row" style="flex:1;align-items:center">
+    <ol class="steps grow" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+      <li><b>Pick any station</b><span class="small">Three 20-minute rounds. No forced rotation.</span></li>
+      <li><b>Do its task</b><span class="small">It's on the sign and on your phone.</span></li>
+      <li><b>Check the box</b><span class="small">On the passport strip of your worksheet.</span></li>
+      <li><b>1 soul = 1 raffle ticket</b><span class="small">Tear off your strip at 7:45. Prize drawn at the regroup.</span></li>
+    </ol>
+  </div>
+  <div class="foot"><p class="lede" style="font-size:var(--body)">No task asks how you're voting. Your worksheet stays with you.</p>
+    <div class="qrbox" style="width:calc(var(--u)*220)"><!--QR:play--><span>Scan to play</span></div></div>
+</section>
+
+<!-- 13 · Dates -->
+<section class="slide poster" aria-label="Key dates">
+  <p class="eyebrow">Don't let your ballot become a ghost</p>
+  <h2 class="scream" style="font-size:var(--h2)">Key dates</h2>
+  <div class="dates" style="flex:1;align-content:center">
+    <div class="date"><time>Oct 16</time><b>Ballots arrived</b><span class="small">Missing yours? Call Honolulu Elections: 808-768-9234.</span></div>
+    <div class="date"><time>Oct 20</time><b>Voter service centers open</b><span class="small">Honolulu Hale &amp; Kapolei Hale. Same-day registration and in-person voting.</span></div>
+    <div class="date"><time>Oct 27</time><b>Mailing it? Send by now</b><span class="small">After this, use a drop box or a voter service center.</span></div>
+    <div class="date final"><time>Nov 3 · 7pm</time><b>Ballot must ARRIVE</b><span class="small">Postmarks don't count. Drop boxes close at 7:00 pm.</span></div>
+  </div>
+  <div class="foot"><p class="warn">✍ Sign the return envelope. Unsigned ballots don't count.</p>
+    <div class="qrbox" style="width:calc(var(--u)*200)"><!--QR:ballottrax--><span>Track your ballot</span></div></div>
+</section>
+
+<!-- 14 · Lobby -->
+<section class="slide dark lobby" id="lobby" aria-label="Scan to play">
+  <div class="qrbox"><!--QR:play--><span>Scan to play</span></div>
+  <div class="grow" style="display:flex;flex-direction:column;gap:var(--gap)">
+    <p class="eyebrow">Ballots &amp; Boos · the game</p>
+    <h2 class="scream">Collect<br>souls</h2>
+    <div class="clock" id="clock" aria-live="polite"><span class="round" id="round">Round 1</span><span class="time" id="time">20:00</span></div>
+    <div class="chips">
+      <span class="chip" style="--c:var(--hall)">Candidate Hall</span>
+      <span class="chip" style="--c:var(--rule)">The Rulebook</span>
+      <span class="chip" style="--c:var(--house)">House &amp; Land</span>
+      <span class="chip" style="--c:var(--machine)">City Machine</span>
+      <span class="chip" style="--c:var(--lost)">Lost Souls Desk</span>
+      <span class="chip" style="--c:var(--bone-2)">👻 Ghost Wall</span>
+    </div>
+    <ul class="regroup-list">
+      <li>👻 Read the Ghost Wall together</li>
+      <li>🗣 Say one thing still on your list, and the day you'll turn your ballot in</li>
+      <li>🎟 Tear off your soul strip for the raffle</li>
+    </ul>
+    <div class="ctrl" style="margin-top:auto">
+      <button type="button" id="tStart">Start timer (T)</button>
+      <button type="button" id="tNext">Next round (R)</button>
+      <button type="button" id="tReset">Reset</button>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+<nav class="nav" aria-label="Slide controls">
+  <button type="button" id="prev" aria-label="Previous slide">←</button>
+  <output id="count">1 / 14</output>
+  <button type="button" id="next" aria-label="Next slide">→</button>
+  <button type="button" id="fs" aria-label="Full screen">⛶</button>
+</nav>
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const slides = [...stage.querySelectorAll('.slide')];
+  const count = document.getElementById('count');
+  const stacked = matchMedia('(max-width:760px)');
+  let i = Math.min(Math.max((parseInt(location.hash.slice(1), 10) || 1) - 1, 0), slides.length - 1);
+
+  function fit() {
+    const s = Math.min(innerWidth / 1600, innerHeight / 900);
+    stage.style.setProperty('--s', stacked.matches ? 1 : s);
+  }
+  function show(n) {
+    i = Math.min(Math.max(n, 0), slides.length - 1);
+    slides.forEach((el, k) => el.classList.toggle('on', k === i));
+    count.textContent = `${i + 1} / ${slides.length}`;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  addEventListener('resize', fit);
+  stacked.addEventListener('change', fit);
+  document.getElementById('prev').onclick = () => show(i - 1);
+  document.getElementById('next').onclick = () => show(i + 1);
+  document.getElementById('fs').onclick = () => {
+    const p = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+    p?.catch?.(() => {});
+  };
+
+  // Lobby round timer: three 20-minute rounds, then regroup.
+  const ROUNDS = ['Round 1', 'Round 2', 'Round 3', 'Regroup'];
+  const LEN = 20 * 60;
+  const lobby = document.getElementById('lobby');
+  const clock = document.getElementById('clock');
+  const roundEl = document.getElementById('round');
+  const timeEl = document.getElementById('time');
+  const startBtn = document.getElementById('tStart');
+  let r = 0, left = LEN, tick = null;
+  function paint() {
+    const regroup = r === ROUNDS.length - 1;
+    lobby.classList.toggle('is-regroup', regroup);
+    roundEl.textContent = left === 0 && !regroup ? `${ROUNDS[r]} · time! Switch stations` : ROUNDS[r];
+    const m = Math.floor(left / 60), s = left % 60;
+    timeEl.textContent = regroup ? '7:45' : `${m}:${String(s).padStart(2, '0')}`;
+    clock.classList.toggle('done', left === 0 && !regroup);
+    startBtn.textContent = tick ? 'Pause (T)' : 'Start timer (T)';
+  }
+  function toggle() {
+    if (tick) { clearInterval(tick); tick = null; }
+    else if (left > 0 && r < ROUNDS.length - 1) {
+      tick = setInterval(() => { left = Math.max(left - 1, 0); if (!left) { clearInterval(tick); tick = null; } paint(); }, 1000);
+    }
+    paint();
+  }
+  function nextRound() { clearInterval(tick); tick = null; r = Math.min(r + 1, ROUNDS.length - 1); left = LEN; paint(); }
+  function reset() { clearInterval(tick); tick = null; r = 0; left = LEN; paint(); }
+  startBtn.onclick = toggle;
+  document.getElementById('tNext').onclick = nextRound;
+  document.getElementById('tReset').onclick = reset;
+
+  addEventListener('keydown', e => {
+    if (e.target.closest('button') && (e.key === ' ' || e.key === 'Enter')) return;
+    const k = e.key;
+    if (['ArrowRight', 'PageDown', ' '].includes(k)) { e.preventDefault(); show(i + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(k)) { e.preventDefault(); show(i - 1); }
+    else if (k === 'Home') show(0);
+    else if (k === 'End') show(slides.length - 1);
+    else if (k === 'f' || k === 'F') document.getElementById('fs').click();
+    else if (k === 't' || k === 'T') toggle();
+    else if (k === 'r' || k === 'R') nextRound();
+  });
+  let x0 = null;
+  addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  addEventListener('touchend', e => {
+    if (x0 === null || stacked.matches) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+
+  fit(); show(i); paint();
+})();
+</script>
+</body>
+</html>
