@@ -190,14 +190,83 @@ a{color:inherit}
   .nav,.ctrl{display:none}
 }
 @media (prefers-reduced-motion:reduce){.clock.done .time{animation:none}}
+
+/* Progress bar + chapter cards */
+.hud{position:absolute;left:var(--pad);right:calc(var(--u)*320);bottom:calc(var(--u)*24);display:flex;gap:calc(var(--u)*12);z-index:6;pointer-events:none;color:var(--bone)}
+.hud.on-poster{color:var(--ink)}
+.hud .seg{flex:1;display:flex;flex-direction:column;gap:calc(var(--u)*6);opacity:.4;transition:opacity .4s}
+.hud .seg.cur{opacity:1}
+.hud .seg span{font:800 calc(var(--u)*14)/1 var(--body-font);letter-spacing:.18em;text-transform:uppercase}
+.hud .bar{height:calc(var(--u)*6);background:color-mix(in srgb,currentColor 22%,transparent);overflow:hidden}
+.hud .fill{height:100%;background:var(--blood);transform-origin:left;transform:scaleX(var(--f,0));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.chapter-card{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;justify-content:center;align-items:center;gap:calc(var(--u)*22);text-align:center;cursor:pointer;
+  background:var(--night);background-image:radial-gradient(rgba(246,194,28,.08) 1.2px,transparent 1.6px);background-size:7px 7px}
+.chapter-card.show{display:flex}
+.chapter-card .num{font-family:var(--shriek);color:#ff4a3a;font-size:calc(var(--u)*70);line-height:1}
+.chapter-card .ttl{font-family:var(--display);font-size:calc(var(--u)*200);line-height:.88;text-transform:uppercase;color:var(--scream);transform:skew(-5deg);
+  text-shadow:.03em .03em 0 var(--blood),.06em .06em 0 var(--blood),.09em .09em 0 #000}
+.chapter-card .sub{font-weight:800;font-size:var(--small);letter-spacing:.22em;text-transform:uppercase;color:var(--bone)}
+.bat{display:none}
+.hud[hidden]{display:none}
+@media (max-width:760px){.hud,.chapter-card{display:none!important}}
+
+/* Motion: big screens only, and only when the viewer allows it. */
+@media (prefers-reduced-motion:no-preference) and (min-width:761px){
+  .slide.on{animation:enter .65s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes enter{
+    0%{opacity:0;transform:translateX(calc(var(--dir,1)*var(--u)*70)) scale(1.02);filter:brightness(1.9) contrast(1.3)}
+    10%{opacity:.8}16%{opacity:.3}24%{opacity:1}
+    100%{opacity:1;transform:none;filter:none}}
+  .slide.on [data-a]{animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*110ms + 250ms)}
+  .slide.on .scream[data-a]{animation-name:slam;animation-duration:.8s}
+  @keyframes rise{from{opacity:0;transform:translateY(calc(var(--u)*40))}to{opacity:1;transform:none}}
+  @keyframes slam{
+    0%{opacity:0;transform:skew(-5deg) scale(1.7) rotate(-5deg)}
+    55%{opacity:1;transform:skew(-5deg) scale(.96) rotate(1deg)}
+    68%{transform:skew(-5deg) translateX(calc(var(--u)*-8))}
+    80%{transform:skew(-5deg) translateX(calc(var(--u)*6))}
+    100%{opacity:1;transform:skew(-5deg)}}
+  .stage.held .slide.on,.stage.held .slide.on [data-a]{animation-play-state:paused}
+
+  .chapter-card.show{animation:flick 1.8s linear both}
+  .chapter-card.show .num{animation:rise .6s .1s both}
+  .chapter-card.show .ttl{animation:slam .85s .25s cubic-bezier(.2,.8,.2,1) both}
+  .chapter-card.show .sub{animation:rise .6s .7s both}
+  @keyframes flick{0%{opacity:0}3%{opacity:1}6%{opacity:.25}9%{opacity:1}13%{opacity:.6}16%,100%{opacity:1}}
+
+  .title .art{animation:creep 26s ease-in-out infinite alternate}
+  @keyframes creep{from{transform:scale(1)}to{transform:scale(1.1) translate(-1.5%,-1%)}}
+  .title.on .shriek[data-a]{animation:rise .7s .25s both,buzz 7s 3s infinite}
+  @keyframes buzz{0%,90%,100%{opacity:1}91%{opacity:.15}93%{opacity:1}95%{opacity:.4}96%{opacity:1}}
+  .slide.on .burst{animation:pop .6s 1.3s cubic-bezier(.3,1.7,.5,1) both,wobble 3.2s 1.9s ease-in-out infinite}
+  @keyframes pop{from{transform:rotate(10deg) scale(0)}to{transform:rotate(10deg) scale(1)}}
+  @keyframes wobble{0%,100%{transform:rotate(10deg) scale(1)}50%{transform:rotate(3deg) scale(1.07)}}
+  .lobby.on .qrbox[data-a]{animation:rise .7s .25s both,glow 2.4s 1.2s ease-in-out infinite}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(246,194,28,0)}50%{box-shadow:0 0 0 calc(var(--u)*22) rgba(246,194,28,.35)}}
+  .clock.hurry .time{animation:pulse 1s ease-in-out infinite;transform-origin:left}
+  @keyframes pulse{50%{transform:scale(1.07)}}
+
+  .bat{display:block;position:absolute;z-index:4;width:calc(var(--u)*86);left:calc(var(--u)*-140);pointer-events:none;color:#0b0907;animation:fly var(--t,13s) linear var(--d,0s) infinite}
+  .bat svg{display:block;width:100%;animation:flap .26s ease-in-out infinite alternate;transform-origin:50% 40%}
+  @keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.3)}}
+  @keyframes fly{
+    0%{transform:translate(0,0) rotate(4deg)}
+    30%{transform:translate(calc(var(--u)*560),calc(var(--u)*-70)) rotate(-6deg)}
+    60%{transform:translate(calc(var(--u)*1150),calc(var(--u)*30)) rotate(5deg)}
+    100%{transform:translate(calc(var(--u)*1900),calc(var(--u)*-50)) rotate(-4deg)}}
+}
 </style>
 </head>
 <body>
 <main class="viewport">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bat" viewBox="0 0 100 46"><path fill="currentColor" d="M50 14l-3-7-2 8c-4-1-7 1-8 4C31 9 20 4 4 6c8 4 11 10 9 17 6-4 13-3 16 3 3-4 9-4 12 2 2-3 5-4 9-1 4-3 7-2 9 1 3-6 9-6 12-2 3-6 10-7 16-3-2-7 1-13 9-17-16-2-27 3-33 13-1-3-4-5-8-4l-2-8z"/></symbol></svg>
 <div class="stage" id="stage">
 
 <!-- 1 · Title -->
 <section class="slide dark title on" aria-label="Title">
+  <span class="bat" style="top:calc(var(--u)*150);--t:14s;--d:0s;width:calc(var(--u)*90)" aria-hidden="true"><svg><use href="#bat"/></svg></span>
+  <span class="bat" style="top:calc(var(--u)*260);--t:18s;--d:5s;width:calc(var(--u)*60)" aria-hidden="true"><svg><use href="#bat"/></svg></span>
+  <span class="bat" style="top:calc(var(--u)*90);--t:22s;--d:10s;width:calc(var(--u)*46)" aria-hidden="true"><svg><use href="#bat"/></svg></span>
   <div class="art" role="img" aria-label="Haunted screenprint of the Hawaiʻi State Capitol under a red moon"></div>
   <div class="copy">
     <p class="shriek">It came from the ballot!</p>
@@ -389,6 +458,8 @@ a{color:inherit}
 
 <!-- 14 · Lobby -->
 <section class="slide dark lobby" id="lobby" aria-label="Scan to play">
+  <span class="bat" style="top:calc(var(--u)*40);--t:16s;--d:2s;width:calc(var(--u)*70)" aria-hidden="true"><svg><use href="#bat"/></svg></span>
+  <span class="bat" style="top:calc(var(--u)*820);--t:20s;--d:9s;width:calc(var(--u)*52)" aria-hidden="true"><svg><use href="#bat"/></svg></span>
   <div class="qrbox"><!--QR:play--><span>Scan to play</span></div>
   <div class="grow" style="display:flex;flex-direction:column;gap:var(--gap)">
     <p class="eyebrow">Ballots &amp; Boos · the game</p>
@@ -415,6 +486,13 @@ a{color:inherit}
   </div>
 </section>
 
+<div class="hud" id="hud" aria-hidden="true">
+  <div class="seg"><span>Welcome</span><div class="bar"><div class="fill"></div></div></div>
+  <div class="seg"><span>Your ballot</span><div class="bar"><div class="fill"></div></div></div>
+  <div class="seg"><span>Game plan</span><div class="bar"><div class="fill"></div></div></div>
+  <div class="seg"><span>Play</span><div class="bar"><div class="fill"></div></div></div>
+</div>
+<div class="chapter-card" id="chapter" aria-live="polite"><p class="num"></p><p class="ttl"></p><p class="sub"></p></div>
 </div>
 </main>
 <nav class="nav" aria-label="Slide controls">
@@ -435,11 +513,69 @@ a{color:inherit}
     const s = Math.min(innerWidth / 1600, innerHeight / 900);
     stage.style.setProperty('--s', stacked.matches ? 1 : s);
   }
-  function show(n) {
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)');
+  const hud = document.getElementById('hud');
+  const segs = [...hud.querySelectorAll('.seg')];
+  const card = document.getElementById('chapter');
+  // Slide numbers (1-based) where each part starts and ends.
+  const PARTS = [[1, 4], [5, 9], [10, 13], [14, 14]];
+  const CHAPTERS = {
+    5: ['Part one', 'Your ballot', "What you're looking at"],
+    10: ['Part two', 'The game plan', 'How tonight works'],
+    14: ['Showtime!', 'Let the hunt begin', 'Scan the code · pick a station'],
+  };
+
+  // Tag the pieces of each slide so they build in one after another.
+  const BUILD = '.eyebrow,.shriek,.scream,.lede,.leave>li,.rules>li,.timeline>div,.ballot,.card,.warn,.steps>li,.date,.ghost-strip,.qrbox,.chip,.clock,.slide>p.small';
+  slides.forEach(sl => {
+    let n = 0;
+    sl.querySelectorAll(BUILD).forEach(el => {
+      if (el.parentElement.closest('[data-a]')) return;
+      el.dataset.a = '';
+      el.style.setProperty('--i', Math.min(n++, 14));
+    });
+  });
+
+  let chapterTimer = null;
+  function endChapter() {
+    clearTimeout(chapterTimer);
+    card.classList.remove('show');
+    stage.classList.remove('held');
+  }
+  function chapter([num, ttl, sub]) {
+    if (reduce.matches || stacked.matches) return;
+    card.querySelector('.num').textContent = num;
+    card.querySelector('.ttl').textContent = ttl;
+    card.querySelector('.sub').textContent = sub;
+    card.classList.remove('show');
+    void card.offsetWidth;
+    card.classList.add('show');
+    stage.classList.add('held');
+    clearTimeout(chapterTimer);
+    chapterTimer = setTimeout(endChapter, 1900);
+  }
+  card.addEventListener('click', endChapter);
+
+  function show(n, quiet) {
+    const prev = i;
     i = Math.min(Math.max(n, 0), slides.length - 1);
-    slides.forEach((el, k) => el.classList.toggle('on', k === i));
-    count.textContent = `${i + 1} / ${slides.length}`;
-    history.replaceState(null, '', '#' + (i + 1));
+    stage.style.setProperty('--dir', i < prev ? -1 : 1);
+    slides.forEach((el, k) => {
+      el.classList.remove('on');
+      if (k === i) { void el.offsetWidth; el.classList.add('on'); }
+    });
+    const num = i + 1;
+    segs.forEach((seg, k) => {
+      const [a, b] = PARTS[k];
+      seg.classList.toggle('cur', num >= a && num <= b);
+      seg.style.setProperty('--f', Math.min(Math.max((num - a + 1) / (b - a + 1), 0), 1));
+    });
+    hud.hidden = num === 1 || num === slides.length;
+    hud.classList.toggle('on-poster', slides[i].classList.contains('poster'));
+    count.textContent = `${num} / ${slides.length}`;
+    history.replaceState(null, '', '#' + num);
+    endChapter();
+    if (!quiet && i > prev && CHAPTERS[num]) chapter(CHAPTERS[num]);
   }
   addEventListener('resize', fit);
   stacked.addEventListener('change', fit);
@@ -466,6 +602,7 @@ a{color:inherit}
     const m = Math.floor(left / 60), s = left % 60;
     timeEl.textContent = regroup ? '7:45' : `${m}:${String(s).padStart(2, '0')}`;
     clock.classList.toggle('done', left === 0 && !regroup);
+    clock.classList.toggle('hurry', !!tick && left > 0 && left <= 60);
     startBtn.textContent = tick ? 'Pause (T)' : 'Start timer (T)';
   }
   function toggle() {
@@ -484,6 +621,7 @@ a{color:inherit}
   addEventListener('keydown', e => {
     if (e.target.closest('button') && (e.key === ' ' || e.key === 'Enter')) return;
     const k = e.key;
+    if (card.classList.contains('show') && ['ArrowRight', 'PageDown', ' ', 'Enter'].includes(k)) { e.preventDefault(); endChapter(); return; }
     if (['ArrowRight', 'PageDown', ' '].includes(k)) { e.preventDefault(); show(i + 1); }
     else if (['ArrowLeft', 'PageUp'].includes(k)) { e.preventDefault(); show(i - 1); }
     else if (k === 'Home') show(0);
@@ -501,7 +639,7 @@ a{color:inherit}
     x0 = null;
   });
 
-  fit(); show(i); paint();
+  fit(); show(i, true); paint();
 })();
 </script>
 </body>
