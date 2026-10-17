@@ -9,7 +9,7 @@ import re
 import qrcode
 import qrcode.image.svg
 
-BASE = "https://jenniarlet.github.io/ballotsandboos/"
+BASE = "https://jennifermoura.me/ballotsandboos/"
 LINKS = {
     "deck": BASE,
     "play": BASE + "play.html",
